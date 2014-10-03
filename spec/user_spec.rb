@@ -18,7 +18,8 @@ describe "User" do
       expect(mandy.neopoints).to eq(2500)
     end
     it "can change its value" do
-      expect(mandy.neopoints=(3000).neopoints).to eq(3000)
+      mandy.neopoints = 3000
+      expect(mandy.neopoints).to eq(3000)
     end
   end
 
@@ -27,10 +28,11 @@ describe "User" do
       expect(mandy.items).to eq([])
     end
     it "allows items to be added and removed" do
-      mandy.items << ["catnip", "chew toy"]
+      mandy.items << first_item = Item.new
+      mandy.items << second_item = Item.new
       expect(mandy.items.length).to eq(2)
-      expect(mandy.items).to include(["catnip"])
-      expect(mandy.items).to include(["chew toy"])
+      expect(mandy.items).to include(first_item)
+      expect(mandy.items).to include(second_item)
       mandy.items.shift
       expect(mandy.items.length).to eq(1)
     end
@@ -41,12 +43,13 @@ describe "User" do
       expect(mandy.items).to eq([])
     end
     it "allows pets to be added and removed" do
-      mandy.items << ["jubjub", "korbat"]
-      expect(mandy.items.length).to eq(2)
-      expect(mandy.items).to include(["jubjub"])
-      expect(mandy.items).to include(["korbat"])
-      mandy.items.shift
-      expect(mandy.items.length).to eq(1)
+      mandy.neopets << princess = Neopet.new("Princess")
+      mandy.neopets << sir = Neopet.new("Sir Whiskers")
+      expect(mandy.neopets.length).to eq(2)
+      expect(mandy.neopets).to include(princess)
+      expect(mandy.neopets).to include(sir)
+      mandy.neopets.shift
+      expect(mandy.neopets.length).to eq(1)
     end
   end
 

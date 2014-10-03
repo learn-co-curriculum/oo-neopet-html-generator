@@ -3,12 +3,18 @@ class Neopet
 
   def initialize(name)
     @name = name
-    @strength = randomizer
-    @defence = randomizer
-    @movement = randomizer
+    @species = get_species
+    @strength = get_points
+    @defence = get_points
+    @movement = get_points
   end
 
-  def randomizer
+  def get_species
+    all_names = Dir["public/img/neopets/*.jpg"]
+    all_names.sample.gsub("public/img/neopets/", "").gsub(".jpg", "")
+  end
+
+  def get_points
     rand(1..10)
   end
 
