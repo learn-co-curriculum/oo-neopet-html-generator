@@ -32,10 +32,14 @@ class User
   end
 
   def sell_neopet_by_name(name)
-    pet = find_neopet_by_name(name)
-    self.neopets.delete(pet)
-    self.neopoints += 200
-    "You have sold #{name}. You now have #{self.neopoints} neopoints."
+    found = find_neopet_by_name(name)
+    if found.class == Neopet
+      self.neopets.delete(found)
+      self.neopoints += 200
+      "You have sold #{name}. You now have #{self.neopoints} neopoints."
+    else
+      "Sorry, there are no pets named #{name}."
+    end
   end
 
   def find_neopet_by_name(name)

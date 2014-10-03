@@ -113,7 +113,7 @@ describe "User" do
   end
 
   describe "#sell_neopet_by_name" do
-    it "accepts one argument" do
+    it "accepts one argument, the pet's name" do
       mandy.buy_neopet
       neopet_name = mandy.neopets[0].name
       expect { mandy.sell_neopet_by_name(neopet_name) }.to_not raise_error
@@ -125,9 +125,31 @@ describe "User" do
       expect(mandy.sell_neopet_by_name("Lady Vivian")).to eq("You have sold Lady Vivian. You now have 2700 neopoints.")
     end
 
+    it "removes the neopet from the neopets array" do
+      vivi = Neopet.new("Lady Vivian")
+      mandy.neopets << vivi
+      mandy.sell_neopet_by_name("Lady Vivian")
+      expect(mandy.neopets).to_not include(vivi)
+    end
+
+    it "increments the seller's neopoints by 200" do
+      original_neopoints = mandy.neopoints
+      mandy.neopets << Neopet.new("Lady Vivian")
+      mandy.sell_neopet_by_name("Lady Vivian")
+      expect(mandy.neopoints).to eq(original_neopoints + 200)
+    end
+
     it "apologizes if it can't find a pet" do
       mandy.neopets << Neopet.new("Lady Vivian")
       expect(mandy.find_neopet_by_name("Lady")).to eq("Sorry, there are no pets named Lady.")
     end
+
+    it "does not alter the neopoints if the pet isn't found" do
+      original_neopoints = mandy.neopoints
+      mandy.neopets << Neopet.new("Lady Vivian")
+      mandy.find_neopet_by_name("Lsfsfy")
+      expect(mandy.neopoints).to eq(original_neopoints)
+    end
+
   end
 end
