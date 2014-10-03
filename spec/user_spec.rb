@@ -150,6 +150,17 @@ describe "User" do
       mandy.find_neopet_by_name("Lsfsfy")
       expect(mandy.neopoints).to eq(original_neopoints)
     end
-
   end
+
+  describe "#make_file_name_for_index_page" do
+    it "replaces spaces in the user's name with dashes and lowercases every letter" do
+      expect(mandy.make_file_name_for_index_page).to eq("mandy-moore")
+    end
+  end
+
+  # describe "#make_index_page" do
+  #   it "saves an html file to views/users/ that is named after the user's name" do
+
+  #   end
+  # end
 end
