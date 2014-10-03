@@ -62,6 +62,27 @@ describe "User" do
   end
 
   describe "#buy_neopet" do
+    it "costs 250 neopoints" do
+      mandy.neopoints = 250
+      mandy.buy_neopet
+      expect(mandy.neopoints).to eq(0)
+    end
+
+    it "allows users with at least 250 neopoints to buy a neopoint" do
+      initial_pet_number = mandy.neopets.length
+      mandy.neopoints = 250
+      mandy.buy_neopet
+      expect(mandy.neopets.length).to eq(initial_pet_number + 1)
+    end
+
+    it "blocks users with less than 249 neopoints from buying a neopoint" do
+      initial_pet_number = mandy.neopets.length
+      mandy.neopoints = 249
+      mandy.buy_neopet
+      expect(mandy.neopets.length).to eq(initial_pet_number)
+      expect(mandy.neopoints).to eq(249)
+    end
+
     it "creates a new instance of Neopet and adds pet to user's neopets" do
       initial_pet_number = mandy.neopets.length
       mandy.buy_neopet

@@ -23,7 +23,12 @@ class User
   end
 
   def buy_neopet
-    self.neopets << Neopet.new(select_pet_name)
+    if self.neopoints >= 250
+      self.neopets << Neopet.new(select_pet_name)
+      self.neopoints -= 250
+    else
+      "Sorry, you do not have enough Neopoints"
+    end
   end
 
   def write_index_page
