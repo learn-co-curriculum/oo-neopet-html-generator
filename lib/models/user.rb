@@ -27,12 +27,28 @@ class User
       self.neopets << Neopet.new(select_pet_name)
       self.neopoints -= 250
     else
-      "Sorry, you do not have enough Neopoints"
+      "Sorry, you do not have enough Neopoints."
     end
   end
 
+  def sell_neopet_by_name(name)
+    pet = find_neopet_by_name(name)
+    self.neopets.delete(pet)
+    self.neopoints += 200
+    "You have sold #{name}. You now have #{self.neopoints} neopoints."
+  end
+
+  def find_neopet_by_name(name)
+    self.neopets.each do |pet|
+      if pet.name == name
+        return pet
+      end
+    end
+    "Sorry, there are no pets named #{name}."
+  end
+
   def write_index_page
-    html = "!DOCTYPE"
+    # html = "!DOCTYPE"
   end
 
 end
