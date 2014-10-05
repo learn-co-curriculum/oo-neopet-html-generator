@@ -1,12 +1,14 @@
 class Neopet
   attr_reader :name, :species, :strength, :defence, :movement
-
+  attr_accessor :happiness
+  
   def initialize(name)
     @name = name
     @species = get_species
     @strength = get_points
     @defence = get_points
     @movement = get_points
+    @happiness = get_points
   end
 
   def get_species
@@ -16,6 +18,20 @@ class Neopet
 
   def get_points
     rand(1..10)
+  end
+
+  def mood
+    if self.happiness < 3
+      "depressed"
+    elsif self.happiness < 5
+      "sad"
+    elsif self.happiness < 7
+      "meh"
+    elsif self.happiness < 9
+      "happy"
+    else
+      "ecstatic"
+    end
   end
 
 end

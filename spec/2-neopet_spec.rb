@@ -58,17 +58,32 @@ describe "Neopet" do
     end
   end
 
-  describe "#strength, #defence, #movement" do
-    it "knows its strength, defence, and movement" do
-      expect { sophie.strength }.to_not raise_error
-      expect { sophie.defence }.to_not raise_error
-      expect { sophie.movement }.to_not raise_error
-    end
+  describe "#strength, #defence, #movement, #happiness" do
 
-    it "sets strength, defence, and movement to integers between 1 and 10" do
-      expect(sophie.strength.class).to eq(Fixnum)
-      expect(sophie.defence.class).to eq(Fixnum)
-      expect(sophie.movement.class).to eq(Fixnum)
+    let(:method_list) {  [:strength, :defence, :movement, :happiness] }
+    let(:set_attributes) { [:strength=, :defence=, :movement=] }
+
+    it "knows its strength, defence, movement, and happiness" do
+      method_list.each do |method|
+        expect { sophie.send(method) }.to_not raise_error
+      end
+    end
+    it "sets strength, defence, movement, and happiness to integers between 1 and 10" do
+      method_list.each do |method|
+        expect(sophie.send(method).class).to eq(Fixnum)
+      end
+    end
+    it "can't change its strength, defence, or movement" do
+      set_attributes.each do |method|
+        expect { sophie.send(method, 8) }.to raise_error
+      end
+    end
+    it "can change its happiness" do
+      expect { sophie.happiness=(9) }.to_not raise_error
+      [7,10].each do |num|
+        sophie.happiness = num
+        expect(sophie.happiness).to eq(num)
+      end
     end
   end
 
