@@ -15,6 +15,20 @@ describe "Neopet" do
     end
   end
 
+  describe "#intialize" do
+    before(:all) do
+      @neopet_contents = File.read("lib/models/neopet.rb")
+    end
+    it "calls on #get_points to assign strength, defence, and movement" do
+      expect(@neopet_contents.scan(/@strength = get_points/).length).to eq 1
+      expect(@neopet_contents.scan(/@defence = get_points/).length).to eq 1
+      expect(@neopet_contents.scan(/@movement = get_points/).length).to eq 1
+    end
+    it "calls on #get_species to assign species" do
+      expect(@neopet_contents.scan(/@species = get_species/).length).to eq 1
+    end
+  end
+
   describe "#species" do
     it "is instantiated with a species" do
       expect { sophie.species }.to_not raise_error
@@ -33,6 +47,7 @@ describe "Neopet" do
 
   describe "#get_points" do
     it "returns a random number between 1 and 10" do
+      expect(sophie.get_points).to_not eq(Neopet.new("Shiloh").get_points)
       20.times do
         expect(sophie.get_points).to be > 0
         expect(sophie.get_points).to be < 11
@@ -53,15 +68,5 @@ describe "Neopet" do
       expect(sophie.movement.class).to eq(Fixnum)
     end
   end
-
-  describe "#intialize" do
-    it "calls on #get_points to assign strength, defence, and movement" do
-      neopet_contents = File.read("lib/models/neopet.rb")
-      expect(neopet_contents.scan(/@strength = get_points/).length).to eq 1
-      expect(neopet_contents.scan(/@defence = get_points/).length).to eq 1
-      expect(neopet_contents.scan(/@movement = get_points/).length).to eq 1
-    end
-  end
-
 
 end
