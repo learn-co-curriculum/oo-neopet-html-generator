@@ -33,15 +33,18 @@ describe "Neopet" do
     it "is instantiated with a species" do
       expect { sophie.species }.to_not raise_error
     end
-    it "is instantiated with a random species from the file names in public/img/neopets" do
-      expect(sophie.species).to satisfy{|s| all_species.include?(s)}
-      expect(sophie.species).to_not eq(Neopet.new("Shiloh").species)
-    end
     it "knows its species" do
       expect { sophie.species }.to_not raise_error
     end
     it "cannot change its species" do
       expect { mandy.species=("cat") }.to raise_error
+    end
+  end
+
+  describe "#get_species" do
+    it "selects a random species from the file names in public/img/neopets" do
+      expect(sophie.species).to satisfy{|s| all_species.include?(s)}
+      expect(sophie.species).to_not eq(Neopet.new("Shiloh").species)
     end
   end
 

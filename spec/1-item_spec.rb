@@ -2,8 +2,14 @@ describe "Item" do
   let(:item) { Item.new }
   let(:all_items) { get_item_list }
 
-  it "can be instantiated with no arguments" do
-    expect { item }.to_not raise_error
+  describe "#initialize" do 
+    it "can be instantiated with no arguments" do
+      expect { item }.to_not raise_error
+    end
+    it "calls on #get_type to assign an item type" do
+      item_contents = File.read("lib/models/item.rb")
+      expect(item_contents.scan(/@type = get_type/).length).to eq 1
+    end
   end
 
   describe "#type" do
@@ -12,10 +18,6 @@ describe "Item" do
     end
     it "cannot change its type" do
       expect { item.type=("Jessica Simpson") }.to raise_error
-    end
-    it "calls on #get_type within the initialize method to assign an item type" do
-      item_contents = File.read("lib/models/item.rb")
-      expect(item_contents.scan(/@type = get_type/).length).to eq 1
     end
   end
 
