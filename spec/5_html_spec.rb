@@ -1,4 +1,4 @@
-describe "HTML Generator" do
+describe "User - HTML Generator" do
   describe "#make_index_page" do
 
     before(:all) do
@@ -20,7 +20,6 @@ describe "HTML Generator" do
 
     it "lists the user's name in a header and displays their neopoints" do
       file_path = "views/users/aaron-johnson.html"
-      Launchy.open(file_path)
       html_file = File.read(file_path)
       expect(html_file).to match /<h1>Aaron Johnson<\/h1>/
       expect(html_file).to match /<h3><strong>Neopoints:<\/strong> 2500<\/h3>/
@@ -35,11 +34,10 @@ describe "HTML Generator" do
       html_file = File.read(Dir["views/users/*.html"][0])
       [@vivi, @daisy].each do |pet|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/neopets\/#{pet.species}.jpg">/
-        expect(html_file).to match /<li><strong>Name:<\/strong> #{pet.name}<\/li>/
-        expect(html_file).to match /<li><strong>Species:<\/strong> #{pet.species.capitalize}<\/li>/
-        expect(html_file).to match /<li><strong>Strength:<\/strong> #{pet.strength}<\/li>/
-        expect(html_file).to match /<li><strong>Defence:<\/strong> #{pet.defence}<\/li>/
-        expect(html_file).to match /<li><strong>Movement:<\/strong> #{pet.movement}<\/li>/
+        methods = [:name, :mood, :species, :strength, :defence, :movement]
+        methods.each do |method|
+          expect(html_file).to match /<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>/
+        end
       end
     end
 

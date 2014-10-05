@@ -1,66 +1,7 @@
-describe "User" do
+describe "User - Neopet Interactions" do
+  
   let(:mandy) { User.new("Mandy Moore") }
-
-  describe "#name" do
-    it "is instantiated with a name" do
-      expect { mandy }.to_not raise_error
-    end
-    it "knows its name" do
-      expect(mandy.name).to eq("Mandy Moore")
-    end
-    it "cannot change its name" do
-      expect { mandy.name=("Jessica Simpson") }.to raise_error
-    end
-  end
-
-  describe "#neopoints" do
-    it "is instantiated with a 2,500 neopoints" do
-      expect(mandy.neopoints).to eq(2500)
-    end
-    it "can change its value" do
-      mandy.neopoints = 3000
-      expect(mandy.neopoints).to eq(3000)
-    end
-  end
-
-  describe "#items" do
-    it "starts as an empty array" do
-      expect(mandy.items).to eq([])
-    end
-    it "allows items to be added and removed" do
-      mandy.items << first_item = Item.new
-      mandy.items << second_item = Item.new
-      expect(mandy.items.length).to eq(2)
-      expect(mandy.items).to include(first_item)
-      expect(mandy.items).to include(second_item)
-      mandy.items.shift
-      expect(mandy.items.length).to eq(1)
-    end
-  end
-
-  describe "#neopets" do
-    it "starts as an empty array" do
-      expect(mandy.items).to eq([])
-    end
-    it "allows pets to be added and removed" do
-      mandy.neopets << princess = Neopet.new("Princess")
-      mandy.neopets << sir = Neopet.new("Sir Whiskers")
-      expect(mandy.neopets.length).to eq(2)
-      expect(mandy.neopets).to include(princess)
-      expect(mandy.neopets).to include(sir)
-      mandy.neopets.shift
-      expect(mandy.neopets.length).to eq(1)
-    end
-  end
-
-  describe "#select_pet_name" do
-    it "uses the PET_NAMES array to choose a unique pet name" do
-      modified_names = ["Angel", "Baby", "Bailey", "Bella", "Buddy", "Charlie", "Chloe", "Coco", "Lily", "Lucy", "Maggie", "Max", "Molly", "Oliver", "Shadow", "Sophie", "Sunny", "Tiger"]
-      modified_names.each {|n| mandy.neopets << Neopet.new(n)}
-      expect(mandy.select_pet_name).to satisfy {|s| ["Daisy","Rocky","Bandit"].include?(s) }
-    end
-  end
-
+  
   describe "#buy_neopet" do
     it "costs 250 neopoints" do
       mandy.neopoints = 250
@@ -91,6 +32,11 @@ describe "User" do
         expect(pet.class).to eq(Neopet)
       end
     end
+
+    it "calls on #select_pet_name to create the new neopet name" do
+      user_contents = File.read("lib/models/user.rb")
+      expect(user_contents.scan(/Neopet.new\(select_pet_name\)/).length).to eq 1
+    end
   end
 
   describe "#find_neopet_by_name" do
@@ -106,9 +52,9 @@ describe "User" do
       expect(mandy.find_neopet_by_name("Lady Vivian")).to eq(vivi)
     end
 
-    it "apologizes if it can't find a pet" do
+    it "returns nil if it can't find a pet" do
       mandy.neopets << Neopet.new("Lady Vivian")
-      expect(mandy.find_neopet_by_name("Lady")).to eq("Sorry, there are no pets named Lady.")
+      expect(mandy.find_neopet_by_name("Lady")).to eq(nil)
     end
   end
 
@@ -141,24 +87,49 @@ describe "User" do
 
     it "apologizes if it can't find a pet" do
       mandy.neopets << Neopet.new("Lady Vivian")
-      expect(mandy.find_neopet_by_name("Lady")).to eq("Sorry, there are no pets named Lady.")
+      expect(mandy.sell_neopet_by_name("Lady")).to eq("Sorry, there are no pets named Lady.")
     end
 
     it "does not alter the neopoints if the pet isn't found" do
+      nonexistent_pet_name = "wireukls;dj;isjfsdjs"
       original_neopoints = mandy.neopoints
-      mandy.neopets << Neopet.new("Lady Vivian")
-      mandy.find_neopet_by_name("Lsfsfy")
+      mandy.find_neopet_by_name(nonexistent_pet_name)
       expect(mandy.neopoints).to eq(original_neopoints)
     end
   end
 
-  describe "#make_file_name_for_index_page" do
-    it "replaces spaces in the user's name with dashes" do
-      expect(mandy.make_file_name_for_index_page.downcase).to eq("mandy-moore")
+  describe "#feed_neopet_by_name" do
+    before(:each) do
+      @gabriela = User.new("Gabriela Quintero")
+      @shiloh = Neopet.new("Shiloh")
+      @shiloh.happiness = 8
+      @gabriela.neopets << @shiloh
     end
-
-    it "it lowercases every letter" do
-      expect(mandy.make_file_name_for_index_page).to eq("mandy-moore")
+    it "accepts one argument, the pet's name" do
+      expect { @gabriela.feed_neopet_by_name("Shiloh") }.to_not raise_error
+    end
+    it "increases the pet's happiness by 2 points if it's current happiness is less than 9" do
+      @gabriela.feed_neopet_by_name("Shiloh")
+      expect(@shiloh.happiness).to eq(10)
+    end
+    it "increases the pet's happiness by 1 point if it's current happiness is 9" do
+      @shiloh.happiness = 9
+      @gabriela.feed_neopet_by_name("Shiloh")
+      expect(@shiloh.happiness).to eq(10)
+    end
+    it "does not increase the pet's happiness if it is already at 10" do
+      @shiloh.happiness = 10
+      @gabriela.feed_neopet_by_name("Shiloh")
+      expect(@shiloh.happiness).to eq(10)
+    end
+    it "returns a message about the fed pet's mood" do
+      @shiloh.happiness = 6
+      expect(@gabriela.feed_neopet_by_name("Shiloh")).to eq("After feeding, Shiloh is happy.")
+    end
+    it "returns a message if the pet cannot be fed because it's already at 10 happiness" do
+      @shiloh.happiness = 10
+      expect(@gabriela.feed_neopet_by_name("Shiloh")).to eq("Sorry, feeding was unsuccessful as Shiloh is already ecstatic.")
     end
   end
+
 end

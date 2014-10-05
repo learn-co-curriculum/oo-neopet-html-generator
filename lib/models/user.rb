@@ -1,5 +1,3 @@
-require 'pry'
-
 class User
   attr_reader :name
   attr_accessor :neopets, :neopoints, :items
@@ -33,13 +31,39 @@ class User
 
   def sell_neopet_by_name(name)
     found = find_neopet_by_name(name)
-    if found.class == Neopet
+    if found
       self.neopets.delete(found)
       self.neopoints += 200
       "You have sold #{name}. You now have #{self.neopoints} neopoints."
     else
-      "Sorry, there are no pets named #{name}."
+      not_found_message(name)
     end
+  end
+
+  def feed_neopet_by_name(name)
+    found = find_neopet_by_name(name)
+    if found
+      if found.happiness < 10
+        feed_nonestatic_neopet(found)
+      else
+        "Sorry, feeding was unsuccessful as #{found.name} is already #{found.mood}."
+      end
+    else
+      not_found_message(name)
+    end
+  end
+
+  def feed_nonestatic_neopet(neopet)
+    if neopet.happiness < 9
+      neopet.happiness += 2
+    elsif neopet.happiness < 10
+      neopet.happiness += 1
+    end
+    "After feeding, #{neopet.name} is #{neopet.mood}."
+  end
+
+  def not_found_message(name)
+    "Sorry, there are no pets named #{name}."
   end
 
   def find_neopet_by_name(name)
@@ -48,7 +72,7 @@ class User
         return pet
       end
     end
-    "Sorry, there are no pets named #{name}."
+    nil
   end
 
   def make_file_name_for_index_page
@@ -71,16 +95,13 @@ class User
   def add_neopets_to_html(html)
     html << "<div class=\"col-lg-6\">\n<h3>Neopets</h3><ul>\n"
     self.neopets.each do |pet|
-      html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>\n"
-      html << "<ul>\n"
-      html << "<li><strong>Name:</strong> #{pet.name}</li>\n"
-      html << "<li><strong>Species:</strong> #{pet.species.capitalize }</li>\n"
-      html << "<li><strong>Strength:</strong> #{pet.strength}</li>\n"
-      html << "<li><strong>Defence:</strong> #{pet.defence}</li>\n"
-      html << "<li><strong>Movement:</strong> #{pet.movement}</li>\n"
-      html << "</ul>\n"
+      html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>\n<ul>\n"
+      methods = [:name, :mood, :species, :strength, :defence, :movement]
+      methods.each do |method|
+        html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>/"
+      end
     end
-    html << "</ul>\n</div>\n"
+    html << "</ul>\n</ul>\n</div>\n"
   end
 
   def add_items_to_html(html)
@@ -88,10 +109,9 @@ class User
     html << "<ul>\n"
     self.items.each do |item|
       html << "<li><img src=\"..\/..\/public/img/items/#{item.type}.jpg\"></li>\n"
-      html << "<ul><li>#{item.formatted_type}</li></ul>\n"
+      html << "<ul><li><strong>Type:</strong> #{item.formatted_type}</li></ul>\n"
     end
     html << "</ul>\n</div>\n</div>\n"
   end
-
 
 end
