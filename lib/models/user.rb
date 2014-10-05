@@ -98,8 +98,9 @@ class User
       html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>\n<ul>\n"
       methods = [:name, :mood, :species, :strength, :defence, :movement]
       methods.each do |method|
-        html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>/"
+        html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>"
       end
+      html << "</ul>"
     end
     html << "</ul>\n</ul>\n</div>\n"
   end

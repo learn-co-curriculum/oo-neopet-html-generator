@@ -54,5 +54,11 @@ describe "User - HTML Generator" do
       end
     end
 
+    it "generates an HMTL file that looks good" do
+      `open views/users/aaron-johnson.html`
+      sleep(1)
+      expect(__).to eq("yes")
+    end    
+
   end
 end

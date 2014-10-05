@@ -26,3 +26,7 @@ end
 def spec_format_type(type)
   type.split("_").collect {|w| w.capitalize }.join(" ")
 end
+
+def __
+  raise "__ should be replaced with a subjective evalution of how the generated HTML looks"
+end
