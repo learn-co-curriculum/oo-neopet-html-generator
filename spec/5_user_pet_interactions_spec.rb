@@ -16,7 +16,7 @@ describe "User - Neopet Interactions" do
       expect(mandy.neopets.length).to eq(initial_pet_number + 1)
     end
 
-    it "blocks users with less than 249 neopoints from buying a neopoint" do
+    it "blocks users with less than 250 neopoints from buying a neopoint" do
       initial_pet_number = mandy.neopets.length
       mandy.neopoints = 249
       mandy.buy_neopet
@@ -36,6 +36,16 @@ describe "User - Neopet Interactions" do
     it "calls on #select_pet_name to create the new neopet name" do
       user_contents = File.read("lib/models/user.rb")
       expect(user_contents.scan(/Neopet.new\(select_pet_name\)/).length).to eq 1
+    end
+
+    it "returns a message about the pet species and name that user purchased" do
+      mandy.neopoints = 2000
+      expect(mandy.buy_neopet).to eq("You have purchased a #{mandy.neopets[-1].species} named #{mandy.neopets[-1].name}.")
+    end
+
+    it "returns an apology message if user has insufficient neopoints" do
+      mandy.neopoints = 149
+      expect(mandy.buy_item).to eq("Sorry, you do not have enough Neopoints.")
     end
   end
 

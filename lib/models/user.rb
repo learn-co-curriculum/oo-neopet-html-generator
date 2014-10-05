@@ -22,19 +22,27 @@ class User
 
   def buy_neopet
     if self.neopoints >= 250
-      self.neopets << Neopet.new(select_pet_name)
+      new_neopet = Neopet.new(select_pet_name)
+      self.neopets << new_neopet
       self.neopoints -= 250
+      "You have purchased a #{new_neopet.species} named #{new_neopet.name}."
     else
-      "Sorry, you do not have enough Neopoints."
+      insufficient_funds
     end
+  end
+
+  def insufficient_funds
+    "Sorry, you do not have enough Neopoints."
   end
 
   def buy_item
     if self.neopoints >= 150
-      self.items << Item.new
+      new_item = Item.new
+      self.items << new_item
       self.neopoints -= 150
+      "You have purchased a #{new_item.type}."
     else
-      "Sorry, you do not have enough Neopoints."
+      insufficient_funds
     end
   end
 
