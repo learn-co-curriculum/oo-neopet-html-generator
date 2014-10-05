@@ -14,3 +14,15 @@ RSpec.configure do |config|
     FileUtils.rm_rf(Dir["views/users/*"]) # remove created view files
   end
 end
+
+def get_species_list
+  Dir["public/img/neopets/*.jpg"].collect {|s| s.gsub("public/img/neopets/", "").gsub(".jpg", "") } 
+end
+
+def get_item_list
+  Dir["public/img/items/*.jpg"].collect {|s| s.gsub("public/img/items/", "").gsub(".jpg", "") } 
+end
+
+def spec_format_type(type)
+  type.split("_").collect {|w| w.capitalize }.join(" ")
+end
