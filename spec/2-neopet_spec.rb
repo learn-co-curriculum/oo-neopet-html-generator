@@ -19,8 +19,9 @@ describe "Neopet" do
     it "is instantiated with a species" do
       expect { sophie.species }.to_not raise_error
     end
-    it "is instantiated with a species from the file names in public/img/neopets" do
+    it "is instantiated with a random species from the file names in public/img/neopets" do
       expect(sophie.species).to satisfy{|s| all_species.include?(s)}
+      expect(sophie.species).to_not eq(Neopet.new("Shiloh").species)
     end
     it "knows its species" do
       expect { sophie.species }.to_not raise_error
@@ -38,5 +39,29 @@ describe "Neopet" do
       end
     end
   end
+
+  describe "#strength, #defence, #movement" do
+    it "knows its strength, defence, and movement" do
+      expect { sophie.strength }.to_not raise_error
+      expect { sophie.defence }.to_not raise_error
+      expect { sophie.movement }.to_not raise_error
+    end
+
+    it "sets strength, defence, and movement to integers between 1 and 10" do
+      expect(sophie.strength.class).to eq(Fixnum)
+      expect(sophie.defence.class).to eq(Fixnum)
+      expect(sophie.movement.class).to eq(Fixnum)
+    end
+  end
+
+  describe "#intialize" do
+    it "calls on #get_points to assign strength, defence, and movement" do
+      neopet_contents = File.read("lib/models/neopet.rb")
+      expect(neopet_contents.scan(/@strength = get_points/).length).to eq 1
+      expect(neopet_contents.scan(/@defence = get_points/).length).to eq 1
+      expect(neopet_contents.scan(/@movement = get_points/).length).to eq 1
+    end
+  end
+
 
 end
