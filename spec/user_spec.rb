@@ -174,13 +174,16 @@ describe "User" do
     end
     
     it "saves an html file to views/users/ with the correct file name" do
-      html_file = Dir["views/users/*.html"][0]
-      expect(File.read(html_file)).to match /<!DOCTYPE html>/
-      expect(File.basename(html_file)).to match /aaron-johnson/
+      html_files = Dir["views/users/*.html"]
+      expect(html_files).to include("views/users/aaron-johnson.html")
+      html_file = File.read("views/users/aaron-johnson.html")
+      expect(html_file).to match /<!DOCTYPE html>/
     end
 
     it "lists the user's name in a header and displays their neopoints" do
-      html_file = File.read(Dir["views/users/*.html"][0])
+      file_path = "views/users/aaron-johnson.html"
+      Launchy.open(file_path)
+      html_file = File.read(file_path)
       expect(html_file).to match /<h1>Aaron Johnson<\/h1>/
       expect(html_file).to match /<h3><strong>Neopoints:<\/strong>2500<\/h3>/
     end
