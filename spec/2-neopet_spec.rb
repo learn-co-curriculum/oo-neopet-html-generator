@@ -19,9 +19,9 @@ describe "Neopet" do
     before(:all) do
       @neopet_contents = File.read("lib/models/neopet.rb")
     end
-    it "calls on #get_points to assign strength, defence, and movement" do
-      ["@strength", "@defence", @movement, @happiness].each do |attr|
-        expect(@neopet_contents.scan(/#{attr} = get_points/).length).to eq 1
+    it "calls on #get_points to assign strength, defence, movement, and happiness" do
+      ["@strength", "@defence", "@movement", "@happiness"].each do |attr|
+        expect( @neopet_contents.scan(/#{attr} = get_points/).length).to eq 1
       end
     end
     it "calls on #get_species to assign species" do
@@ -54,11 +54,13 @@ describe "Neopet" do
 
   describe "#get_points" do
     it "returns a random number between 1 and 10" do
-      expect(sophie.get_points).to_not eq(Neopet.new("Shiloh").get_points)
-      20.times do
-        expect(sophie.get_points).to be > 0
-        expect(sophie.get_points).to be < 11
+      container = []  
+      100.times do
+        container << num = sophie.get_points
+        expect(num).to be > 0
+        expect(num).to be < 11
       end
+      expect(container.uniq.length).to be > 5
     end
   end
 
