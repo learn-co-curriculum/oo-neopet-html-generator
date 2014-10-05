@@ -153,14 +153,67 @@ describe "User" do
   end
 
   describe "#make_file_name_for_index_page" do
-    it "replaces spaces in the user's name with dashes and lowercases every letter" do
+    it "replaces spaces in the user's name with dashes" do
+      expect(mandy.make_file_name_for_index_page.downcase).to eq("mandy-moore")
+    end
+
+    it "it lowercases every letter" do
       expect(mandy.make_file_name_for_index_page).to eq("mandy-moore")
     end
   end
 
-  # describe "#make_index_page" do
-  #   it "saves an html file to views/users/ that is named after the user's name" do
+  describe "#make_index_page" do
 
-  #   end
-  # end
+    before(:all) do
+      lenora = User.new("Lenora Johnson") 
+      lenora.items   << @first_item = Item.new 
+      lenora.items   << @second_item = Item.new 
+      lenora.neopets << @vivi = Neopet.new("Lady Vivian") 
+      lenora.neopets << @daisy = Neopet.new("Daisy") 
+      lenora.make_index_page
+    end
+    
+    it "saves an html file to views/users/ with the correct file name" do
+      html_file = Dir["views/users/*.html"][0]
+      expect(File.read(html_file)).to match /<!DOCTYPE html>/
+      expect(File.basename(html_file)).to match /lenora-johnson/
+    end
+
+    it "lists the user's name in a header and displays their neopoints" do
+      html_file = File.read(Dir["views/users/*.html"][0])
+      expect(html_file).to match /<h1>Lenora Johnson<\/h1>/
+      expect(html_file).to match /<h3><strong>Neopoints:<\/strong>2500<\/h3>/
+    end
+
+    it "has a section for the user's neopets" do
+      html_file = File.read(Dir["views/users/*.html"][0])
+      expect(html_file).to match /<h3>Neopets<\/h3>/
+    end
+
+    it "lists the user's neopets" do
+      html_file = File.read(Dir["views/users/*.html"][0])
+      [@vivi, @daisy].each do |pet|
+        expect(html_file).to match /<img src=\"..\/..\/public\/img\/neopets\/#{pet.species}.jpg">/
+        expect(html_file).to match /<li>#{pet.name}<\/li>/
+        expect(html_file).to match /<li><strong>Species:<\/strong> #{pet.species}<\/li>/
+        expect(html_file).to match /<li><strong>Strength:<\/strong> #{pet.strength}<\/li>/
+        expect(html_file).to match /<li><strong>Defence:<\/strong> #{pet.defence}<\/li>/
+        expect(html_file).to match /<li><strong>Movement:<\/strong> #{pet.movement}<\/li>/
+      end
+    end
+
+    it "has a section for the user's items" do
+      html_file = File.read(Dir["views/users/*.html"][0])
+      expect(html_file).to match /<h3>Items<\/h3>/
+    end
+
+    it "lists the user's items" do
+      html_file = File.read(Dir["views/users/*.html"][0])
+      [@first_item, @second_item].each do |item|
+        expect(html_file).to match /<img src=\"..\/..\/public\/img\/items\/#{item.type}.jpg">/
+        expect(html_file).to match /<li>#{item.type}<\/li>/
+      end
+    end
+
+  end
 end

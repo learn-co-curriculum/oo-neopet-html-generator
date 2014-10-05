@@ -62,21 +62,22 @@ class User
   end
 
   def get_html
-    html = "<!DOCTYPE html>\n\n<html>\n<head>\n<title>#{user.name}</title>\n</head>\n<body>\n<h1>#{user.name}</h1>"
+    html = "<!DOCTYPE html>\n\n<html>\n<head>\n<title>#{self.name}</title>\n</head>\n<body>\n<h1>#{self.name}</h1><h3><strong>Neopoints:</strong>#{self.neopoints}</h3>"
     add_neopets_to_html(html)
     add_items_to_html(html)
-    return html
+    html << "</body></html>"
   end
 
   def add_neopets_to_html(html)
     html << "<h3>Neopets</h3><ul>"
     self.neopets.each do |pet|
-      html << "<li>#{pet.name}</li>"
+      html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>"
       html << "<ul>"
+      html << "<li>#{pet.name}</li>"
       html << "<li><strong>Species:</strong> #{pet.species}</li>"
       html << "<li><strong>Strength:</strong> #{pet.strength}</li>"
       html << "<li><strong>Defence:</strong> #{pet.defence}</li>"
-      html << "<li><strong>movement:</strong> #{pet.movement}</li>"
+      html << "<li><strong>Movement:</strong> #{pet.movement}</li>"
       html << "</ul>"
     end
     html << "</ul>"
@@ -86,7 +87,8 @@ class User
     html << "<h3>Items</h3>"
     html << "<ul>"
     self.items.each do |item|
-      html << "<li>#{item.name}</li>"
+      html << "<li><img src=\"..\/..\/public/img/items/#{item.type}.jpg\"></li>"
+      html << "<ul><li>#{item.type}</li></ul>"
     end
     html << "</ul>"
   end
