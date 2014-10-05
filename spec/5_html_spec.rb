@@ -2,27 +2,43 @@ describe "User - HTML Generator" do
   describe "#make_index_page" do
 
     before(:all) do
-      lenora = User.new("Aaron Johnson") 
-      lenora.items   << @first_item = Item.new 
-      lenora.items   << @second_item = Item.new 
-      lenora.items   << @third_item = Item.new 
-      lenora.neopets << @vivi = Neopet.new("Lady Vivian") 
-      lenora.neopets << @daisy = Neopet.new("Daisy") 
-      lenora.make_index_page
+      aaron = User.new("Aaron Rusli") 
+
+      # buy items and neopets
+      2.times do 
+        aaron.buy_neopet
+        2.times do
+          aaron.buy_item
+        end
+      end
+
+      # assign instance variables to the purchased pets, items
+      @first_item = aaron.items[0]
+      @second_item = aaron.items[1]
+      @third_item = aaron.items[3]
+      @vivi = aaron.neopets[0]
+      @daisy = aaron.neopets[1]
+
+      # make index page
+      aaron.make_index_page
+    end
+
+    it "is called on with no arguments" do
+      expect { User.new("Alyxe Schmidt").make_index_page }.to_not raise_error
     end
     
     it "saves an html file to views/users/ with the correct file name" do
       html_files = Dir["views/users/*.html"]
-      expect(html_files).to include("views/users/aaron-johnson.html")
-      html_file = File.read("views/users/aaron-johnson.html")
+      expect(html_files).to include("views/users/aaron-rusli.html")
+      html_file = File.read("views/users/aaron-rusli.html")
       expect(html_file).to match /<!DOCTYPE html>/
     end
 
     it "lists the user's name in a header and displays their neopoints" do
-      file_path = "views/users/aaron-johnson.html"
+      file_path = "views/users/aaron-rusli.html"
       html_file = File.read(file_path)
-      expect(html_file).to match /<h1>Aaron Johnson<\/h1>/
-      expect(html_file).to match /<h3><strong>Neopoints:<\/strong> 2500<\/h3>/
+      expect(html_file).to match /<h1>Aaron Rusli<\/h1>/
+      expect(html_file).to match /<h3><strong>Neopoints:<\/strong> 1400<\/h3>/
     end
 
     it "has a section for the user's neopets" do
@@ -55,7 +71,7 @@ describe "User - HTML Generator" do
     end
 
     it "generates an HMTL file that looks good" do
-      `open views/users/aaron-johnson.html`
+      `open views/users/aaron-rusli.html`
       sleep(1)
       expect("yes").to eq("yes")
     end    

@@ -29,6 +29,15 @@ class User
     end
   end
 
+  def buy_item
+    if self.neopoints >= 150
+      self.items << Item.new
+      self.neopoints -= 150
+    else
+      "Sorry, you do not have enough Neopoints."
+    end
+  end
+
   def sell_neopet_by_name(name)
     found = find_neopet_by_name(name)
     if found
