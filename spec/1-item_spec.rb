@@ -24,7 +24,11 @@ describe "Item" do
   describe "#get_type" do
     it "generates a random type from all possible item types, found in public/img/items" do
       expect(item.get_type).to satisfy{|t| all_items.include?(t)}
-      expect(item.get_type).to_not eq(item.get_type)
+      container = []
+      100.times do 
+        container << item.get_type
+      end
+      expect(container.uniq.length).to be > 5
     end
   end
 

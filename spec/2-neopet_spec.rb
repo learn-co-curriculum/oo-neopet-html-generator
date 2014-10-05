@@ -20,9 +20,9 @@ describe "Neopet" do
       @neopet_contents = File.read("lib/models/neopet.rb")
     end
     it "calls on #get_points to assign strength, defence, and movement" do
-      expect(@neopet_contents.scan(/@strength = get_points/).length).to eq 1
-      expect(@neopet_contents.scan(/@defence = get_points/).length).to eq 1
-      expect(@neopet_contents.scan(/@movement = get_points/).length).to eq 1
+      ["@strength", "@defence", @movement, @happiness].each do |attr|
+        expect(@neopet_contents.scan(/#{attr} = get_points/).length).to eq 1
+      end
     end
     it "calls on #get_species to assign species" do
       expect(@neopet_contents.scan(/@species = get_species/).length).to eq 1
@@ -44,7 +44,11 @@ describe "Neopet" do
   describe "#get_species" do
     it "selects a random species from the file names in public/img/neopets" do
       expect(sophie.species).to satisfy{|s| all_species.include?(s)}
-      expect(sophie.species).to_not eq(Neopet.new("Shiloh").species)
+      container = []
+      100.times do 
+        container << sophie.get_species
+      end
+      expect(container.uniq.length).to be > 5
     end
   end
 
@@ -78,6 +82,9 @@ describe "Neopet" do
         expect { sophie.send(method, 8) }.to raise_error
       end
     end
+  end
+
+  describe "#happiness" do
     it "can change its happiness" do
       expect { sophie.happiness=(9) }.to_not raise_error
       [7,10].each do |num|
