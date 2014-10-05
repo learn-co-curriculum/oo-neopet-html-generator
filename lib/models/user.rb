@@ -62,35 +62,35 @@ class User
   end
 
   def get_html
-    html = "<!DOCTYPE html>\n\n<html>\n<head>\n<title>#{self.name}</title>\n</head>\n<body>\n<h1>#{self.name}</h1><h3><strong>Neopoints:</strong>#{self.neopoints}</h3>"
+    html = "<!DOCTYPE html>\n\n<html>\n<head>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css\">\n<link rel=\"stylesheet\" href=\"http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css\">\n<title>#{self.name}</title>\n</head>\n<body>\n<div class=\"container\">\n<div class=\"jumbotron\">\n<h1>#{self.name}</h1>\n<h3><strong>Neopoints:</strong> #{self.neopoints}</h3>\n</div>\n<div class=\"row marketing\">\n"
     add_neopets_to_html(html)
     add_items_to_html(html)
-    html << "</body></html>"
+    html << "</div>\n</body>\n</html>"
   end
 
   def add_neopets_to_html(html)
-    html << "<h3>Neopets</h3><ul>"
+    html << "<div class=\"col-lg-6\">\n<h3>Neopets</h3><ul>\n"
     self.neopets.each do |pet|
-      html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>"
-      html << "<ul>"
-      html << "<li>#{pet.name}</li>"
-      html << "<li><strong>Species:</strong> #{pet.species}</li>"
-      html << "<li><strong>Strength:</strong> #{pet.strength}</li>"
-      html << "<li><strong>Defence:</strong> #{pet.defence}</li>"
-      html << "<li><strong>Movement:</strong> #{pet.movement}</li>"
-      html << "</ul>"
+      html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>\n"
+      html << "<ul>\n"
+      html << "<li><strong>Name:</strong> #{pet.name}</li>\n"
+      html << "<li><strong>Species:</strong> #{pet.species.capitalize }</li>\n"
+      html << "<li><strong>Strength:</strong> #{pet.strength}</li>\n"
+      html << "<li><strong>Defence:</strong> #{pet.defence}</li>\n"
+      html << "<li><strong>Movement:</strong> #{pet.movement}</li>\n"
+      html << "</ul>\n"
     end
-    html << "</ul>"
+    html << "</ul>\n</div>\n"
   end
 
   def add_items_to_html(html)
-    html << "<h3>Items</h3>"
-    html << "<ul>"
+    html << "<div class=\"col-lg-6\">\n<h3>Items</h3>\n"
+    html << "<ul>\n"
     self.items.each do |item|
-      html << "<li><img src=\"..\/..\/public/img/items/#{item.type}.jpg\"></li>"
-      html << "<ul><li>#{item.type}</li></ul>"
+      html << "<li><img src=\"..\/..\/public/img/items/#{item.type}.jpg\"></li>\n"
+      html << "<ul><li>#{item.formatted_type}</li></ul>\n"
     end
-    html << "</ul>"
+    html << "</ul>\n</div>\n</div>\n"
   end
 
 

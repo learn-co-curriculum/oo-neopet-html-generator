@@ -168,6 +168,7 @@ describe "User" do
       lenora = User.new("Aaron Johnson") 
       lenora.items   << @first_item = Item.new 
       lenora.items   << @second_item = Item.new 
+      lenora.items   << @third_item = Item.new 
       lenora.neopets << @vivi = Neopet.new("Lady Vivian") 
       lenora.neopets << @daisy = Neopet.new("Daisy") 
       lenora.make_index_page
@@ -185,7 +186,7 @@ describe "User" do
       Launchy.open(file_path)
       html_file = File.read(file_path)
       expect(html_file).to match /<h1>Aaron Johnson<\/h1>/
-      expect(html_file).to match /<h3><strong>Neopoints:<\/strong>2500<\/h3>/
+      expect(html_file).to match /<h3><strong>Neopoints:<\/strong> 2500<\/h3>/
     end
 
     it "has a section for the user's neopets" do
@@ -197,8 +198,8 @@ describe "User" do
       html_file = File.read(Dir["views/users/*.html"][0])
       [@vivi, @daisy].each do |pet|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/neopets\/#{pet.species}.jpg">/
-        expect(html_file).to match /<li>#{pet.name}<\/li>/
-        expect(html_file).to match /<li><strong>Species:<\/strong> #{pet.species}<\/li>/
+        expect(html_file).to match /<li><strong>Name:<\/strong> #{pet.name}<\/li>/
+        expect(html_file).to match /<li><strong>Species:<\/strong> #{pet.species.capitalize}<\/li>/
         expect(html_file).to match /<li><strong>Strength:<\/strong> #{pet.strength}<\/li>/
         expect(html_file).to match /<li><strong>Defence:<\/strong> #{pet.defence}<\/li>/
         expect(html_file).to match /<li><strong>Movement:<\/strong> #{pet.movement}<\/li>/
@@ -212,9 +213,9 @@ describe "User" do
 
     it "lists the user's items" do
       html_file = File.read(Dir["views/users/*.html"][0])
-      [@first_item, @second_item].each do |item|
+      [@first_item, @second_item, @third_item].each do |item|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/items\/#{item.type}.jpg">/
-        expect(html_file).to match /<li>#{item.type}<\/li>/
+        expect(html_file).to match /<li>#{item.formatted_type}<\/li>/
       end
     end
 
