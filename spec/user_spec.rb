@@ -165,7 +165,7 @@ describe "User" do
   describe "#make_index_page" do
 
     before(:all) do
-      lenora = User.new("Lenora Johnson") 
+      lenora = User.new("Aaron Johnson") 
       lenora.items   << @first_item = Item.new 
       lenora.items   << @second_item = Item.new 
       lenora.neopets << @vivi = Neopet.new("Lady Vivian") 
@@ -176,12 +176,12 @@ describe "User" do
     it "saves an html file to views/users/ with the correct file name" do
       html_file = Dir["views/users/*.html"][0]
       expect(File.read(html_file)).to match /<!DOCTYPE html>/
-      expect(File.basename(html_file)).to match /lenora-johnson/
+      expect(File.basename(html_file)).to match /aaron-johnson/
     end
 
     it "lists the user's name in a header and displays their neopoints" do
       html_file = File.read(Dir["views/users/*.html"][0])
-      expect(html_file).to match /<h1>Lenora Johnson<\/h1>/
+      expect(html_file).to match /<h1>Aaron Johnson<\/h1>/
       expect(html_file).to match /<h3><strong>Neopoints:<\/strong>2500<\/h3>/
     end
 
