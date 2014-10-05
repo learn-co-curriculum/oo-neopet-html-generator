@@ -50,7 +50,7 @@ describe "User - HTML Generator" do
       html_file = File.read(Dir["views/users/*.html"][0])
       [@first_item, @second_item, @third_item].each do |item|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/items\/#{item.type}.jpg">/
-        expect(html_file).to match /<li>#{item.formatted_type}<\/li>/
+        expect(html_file).to match /<li><strong>Type:<\/strong> #{item.formatted_type}<\/li>/
       end
     end
 
