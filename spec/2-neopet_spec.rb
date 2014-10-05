@@ -96,4 +96,36 @@ describe "Neopet" do
     end
   end
 
+  describe "#mood" do
+    it "returns 'depressed' if happiness is between 1 and 2" do
+      [1,2].each do |num|
+        sophie.happiness = num
+        expect(sophie.mood).to eq("depressed")
+      end
+    end
+    it "returns 'sad' if happiness is between 3 and 4" do
+      [3,4].each do |num|
+        sophie.happiness = num
+        expect(sophie.mood).to eq("sad")
+      end
+    end
+    it "returns 'meh' if happiness is between 5 and 6" do
+      [5,6].each do |num|
+        sophie.happiness = num
+        expect(sophie.mood).to eq("meh")
+      end
+    end
+    it "returns 'happy' if happiness is between 7 and 8" do
+      [7,8].each do |num|
+        sophie.happiness = num
+        expect(sophie.mood).to eq("happy")
+      end
+    end
+    it "returns 'ecstatic' if happiness is between 7 and 8" do
+      [9,10].each do |num|
+        sophie.happiness = num
+        expect(sophie.mood).to eq("ecstatic")
+      end
+    end
+  end
 end
