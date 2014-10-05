@@ -89,7 +89,7 @@ describe "Neopet" do
   describe "#happiness" do
     it "can change its happiness" do
       expect { sophie.happiness=(9) }.to_not raise_error
-      [7,10].each do |num|
+      (1..10).each do |num|
         sophie.happiness = num
         expect(sophie.happiness).to eq(num)
       end
