@@ -19,6 +19,12 @@ describe "User - HTML Generator" do
       @vivi = aaron.neopets[0]
       @daisy = aaron.neopets[1]
 
+      # give items to neopets
+      2.times do
+        @vivi.items << Item.new
+      end
+      @daisy.items << Item.new
+      
       # make index page
       aaron.make_index_page
     end

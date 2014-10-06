@@ -147,7 +147,9 @@ class User
       methods.each do |method|
         html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>"
       end
-      html << "</ul>"
+      html << "<li><strong>Items:<strong></li><ul>"
+      pet.items.each { |i| html << "<li>#{i.formatted_type}</li>" }
+      html << "</ul></ul>"
     end
     html << "</ul>\n</ul>\n</div>\n"
   end
