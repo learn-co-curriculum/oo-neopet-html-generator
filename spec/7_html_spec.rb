@@ -40,6 +40,12 @@ describe "User - HTML Generator" do
       expect(html_file).to match /<!DOCTYPE html>/
     end
 
+    it "generates an HMTL file that looks good" do
+      `open views/users/aaron-rusli.html`
+      sleep(1)
+      expect("yes").to eq("yes")
+    end  
+      
     it "lists the user's name in a header and displays their neopoints" do
       file_path = "views/users/aaron-rusli.html"
       html_file = File.read(file_path)
@@ -76,11 +82,6 @@ describe "User - HTML Generator" do
       end
     end
 
-    it "generates an HMTL file that looks good" do
-      `open views/users/aaron-rusli.html`
-      sleep(1)
-      expect("yes").to eq("yes")
-    end    
 
   end
 end
