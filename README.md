@@ -1,7 +1,7 @@
 ---
 tags: oo, static html generator, hierarchical class interactions, wip
 languages: ruby, html
-resources: 2
+resources: 3
 ---
 
 # OO-Neopets
@@ -11,19 +11,29 @@ resources: 2
 |Section                                |
 |---------------------------------------|
 |[Objectives](#objectives)              |
+|[Overview](#overview)                  |
 |[File Structure](#file-structure)      |
 |[Resources](#resources)                |
 |[Example HTML File](example-html-file) |
+
 ## Objectives
 
 You're going to be making a rudimentary version of [Neopets](http://www.neopets.com/).
+
+## Overview
+
+#### Models
 
 In Neopets, there are users, items, and neopets:
 * Items are the simplest and just have a type.
 * Users have have a name, neopoints (which are treated like currency), neopets, and items.
 * Neopets also can have items, like users. They also have a name, a species, strength, defence, movement, and moods.
 
+#### Methods
+
 Some basic things that users can do on neopets is buy more pets, buy more items, sell pets, feed pets, and give items to pets (kinda like giving them presents).
+
+#### HTML Generator
 
 Once all these methods are built out, you'll make a method in the user class that will generate an HTML file that will display the user's "account", so to speak. For instance, that HTML file could look like this:
 
@@ -51,13 +61,7 @@ This lab has the following structure:
 │       └── readme-images
 │           └── example-html-page.png
 ├── spec
-│   ├── 1_item_spec.rb
-│   ├── 2_neopet_spec.rb
-│   ├── 3_user_spec.rb
-│   ├── 4_user_item_interactions_spec.rb
-│   ├── 5_user_pet_interactions_spec.rb
-│   ├── 6_give_present_spec.rb
-│   ├── 7_html_spec.rb
+│   ├── specs
 │   └── spec_helper.rb
 └── views
     ├── readme_example
@@ -66,10 +70,18 @@ This lab has the following structure:
         └── your user.rb file will create html files in this folder
 ```
 
+It will be helpful to be familiar with this structure as your Neopet class will select a random species for a new neopet using the file names in public/img/neopets. 
+
+Along the same lines, your Item class will select a random type from the file names in public/img/items.
+
+Furthermore, your User class will have a method, `make_index_page`, that will generate an HTML file and save it to the `views/users/` folder.
+
 ## Example HTML File
 
-For a hint about what your generated HTML could look like, see the file `example.html` in the `views/readme_example` folder.
+For a hint about what the generated HTML could look like, see the file `example.html` in the `views/readme_example` folder.
 
 ## Resources
+* [Stack Overflow](http://stackoverflow.com/) - [Get names of all files from a folder with Ruby](http://stackoverflow.com/a/1755713)
 * [Stack Overflow](http://stackoverflow.com/) - [Writing to a file in Ruby](http://stackoverflow.com/a/7915881)
 * [Ruby Monk](http://rubymonk.com/)- [Using the File Class](http://rubymonk.com/learning/books/1-ruby-primer/chapters/42-introduction-to-i-o/lessons/90-using-the-file-class)
+* [DaniWeb - Ruby](https://www.daniweb.com/web-development/ruby/) - [Create Html Files Using Ruby](https://www.daniweb.com/web-development/ruby/threads/236062/create-html-files-using-ruby)
