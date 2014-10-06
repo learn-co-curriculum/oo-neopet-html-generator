@@ -95,7 +95,7 @@ Furthermore, your User class will have a method, `make_index_page`, that will ge
 
 This is a test-driven lab and tests are written in order of increasing difficulty. Therefore, we suggest that you tackle them in order.
 
-If you get stuck, be sure to refer to the curated resources curated below. If still stuck, feel free to:
+If you get stuck, be sure to refer to the curated resources below. If still stuck, feel free to:
  * google to your heart's content
  * ask a classmate
  * ask an instructor
