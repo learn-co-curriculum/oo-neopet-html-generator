@@ -1,4 +1,4 @@
 --color
 --format documentation
---fail-fast
 --require spec_helper
+--fail-fast
