@@ -43,7 +43,7 @@ On [neopets.com](http://www.neopets.com/), there are users, items, and neopets:
 
 #### Methods
 
-Some basic things that users can do on [neopets.com](http://www.neopets.com/) is buy pets, buy items, sell pets, feed pets, and give items to pets (kinda like giving them presents).
+Some basic things that users can do on [neopets.com](http://www.neopets.com/) are buy pets, buy items, sell pets, feed pets, and give items to pets (kinda like giving them presents).
 
 #### HTML Generator
 
