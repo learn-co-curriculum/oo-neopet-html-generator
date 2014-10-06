@@ -96,7 +96,10 @@ For a hint about what the generated HTML could look like, see the file [example.
 
 This is a test-driven lab and tests are written in order of increasing difficulty. Therefore, we suggest that you tackle them in order.
 
-If you get stuck, be sure to the resources curated for you below.
+If you get stuck, be sure to refer to the curated resources curated below. If still stuck, feel free to:
+ * google to your heart's content
+ * ask a classmate
+ * ask an instructor
 
 ## Resources
 * [Stack Overflow](http://stackoverflow.com/) - [Get names of all files from a folder with Ruby](http://stackoverflow.com/a/1755713)
