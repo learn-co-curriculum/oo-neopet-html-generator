@@ -92,6 +92,19 @@ class User
     nil
   end
 
+  def find_item_by_type(type)
+    self.items.each do |item|
+      if item.type == type
+        return item
+      end
+    end
+    nil
+  end
+
+  def give_present(item_type, neopet_name)
+    
+  end
+
   def make_file_name_for_index_page
     self.name.gsub(" ", "-").downcase
   end

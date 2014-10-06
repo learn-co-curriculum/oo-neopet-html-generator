@@ -3,8 +3,8 @@ require_relative "../lib/models/neopet.rb"
 require_relative "../lib/models/item.rb"
 
 require 'fileutils'
-require 'launchy'
 require 'pry'
+
 RSpec.configure do |config|
   config.order = 'default'
   config.before(:all) do

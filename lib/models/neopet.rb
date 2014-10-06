@@ -1,9 +1,10 @@
 class Neopet
   attr_reader :name, :species, :strength, :defence, :movement
-  attr_accessor :happiness
+  attr_accessor :happiness, :items
   
   def initialize(name)
     @name = name
+    @items = []
     @species = get_species
     @strength = get_points
     @defence = get_points

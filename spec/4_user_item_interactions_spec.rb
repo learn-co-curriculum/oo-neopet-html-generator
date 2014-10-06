@@ -50,4 +50,10 @@ describe "User - Item Interactions" do
     end
   end
 
+  describe "#find_item_by_type" do
+    xit "does stuff" do
+      # code here
+    end
+  end
+
 end
