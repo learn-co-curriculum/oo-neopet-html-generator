@@ -48,19 +48,18 @@ describe "User - HTML Generator" do
     end  
       
     it "lists the user's name in a header and displays their neopoints" do
-      file_path = "views/users/aaron-rusli.html"
-      html_file = File.read(file_path)
+      html_file = File.read("views/users/aaron-rusli.html")
       expect(html_file).to match /<h1>Aaron Rusli<\/h1>/
       expect(html_file).to match /<h3><strong>Neopoints:<\/strong> #{@aaron.neopoints}<\/h3>/
     end
 
     it "has a section for the user's neopets" do
-      html_file = File.read(Dir["views/users/*.html"][0])
+      html_file = File.read("views/users/aaron-rusli.html")
       expect(html_file).to match /<h3>Neopets<\/h3>/
     end
 
     it "lists the user's neopets" do
-      html_file = File.read(Dir["views/users/*.html"][0])
+      html_file = File.read("views/users/aaron-rusli.html")
       [@vivi, @daisy].each do |pet|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/neopets\/#{pet.species}.jpg">/
         methods = [:name, :mood, :species, :strength, :defence, :movement]
@@ -71,12 +70,12 @@ describe "User - HTML Generator" do
     end
 
     it "has a section for the user's items" do
-      html_file = File.read(Dir["views/users/*.html"][0])
+      html_file = File.read("views/users/aaron-rusli.html")
       expect(html_file).to match /<h3>Items<\/h3>/
     end
 
     it "lists the user's items" do
-      html_file = File.read(Dir["views/users/*.html"][0])
+      html_file = File.read("views/users/aaron-rusli.html")
       [@first_item, @second_item, @third_item].each do |item|
         expect(html_file).to match /<img src=\"..\/..\/public\/img\/items\/#{item.type}.jpg">/
         expect(html_file).to match /<li><strong>Type:<\/strong> #{item.formatted_type}<\/li>/
