@@ -43,7 +43,8 @@ describe "User - HTML Generator" do
     it "generates an HMTL file that looks good" do
       `open views/users/aaron-rusli.html`
       sleep(1)
-      expect("yes").to eq("yes")
+      expect("good").to eq("good")
+      puts "in spec/7_html_spec.rb, comment out the lines 'open views...' (#44) and 'sleep(1)' (#45), and this line (#47) before submitting a pull request"
     end  
       
     it "lists the user's name in a header and displays their neopoints" do
