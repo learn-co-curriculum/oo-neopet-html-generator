@@ -44,6 +44,7 @@ describe "User - HTML Generator" do
       # `open views/users/aaron-rusli.html`
       # sleep(1)
       expect("yes").to eq("yes")
+      # commented out puts could go here
     end  
       
     it "lists the user's name in a header and displays their neopoints" do
