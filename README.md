@@ -14,10 +14,10 @@ resources: 4
 |---------------------------------------|---------------------------------------|
 |![cat reading](public/img/readme-images/cat-reading.jpg)                                        |[Background](#background)              |
 |                                       |[Objectives](#objectives)              |
-|                                       |[Overview](#overview)                  |
+|![acura writing](public/img/readme-images/acura-writing.png)                                        |[Overview](#overview)                  |
 |                                       |[File Structure](#file-structure)      |
 |                                       |[Instructions](#instructions)          |
-|                                       |[Resources](#resources)                |
+|![fog reading](public/img/readme-images/frog-reading.jpg)                                        |[Resources](#resources)                |
 
 ## Background
 
