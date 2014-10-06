@@ -116,7 +116,7 @@ class User
 
   def increase_pet_happiness_by_five(pet)
     if pet.happiness <= 5
-      pet.happiness += 10
+      pet.happiness += 5
     else
       pet.happiness = 10
     end
