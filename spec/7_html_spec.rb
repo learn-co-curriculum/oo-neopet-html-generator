@@ -41,8 +41,8 @@ describe "User - HTML Generator" do
     end
 
     it "generates an HMTL file that looks good" do
-      `open views/users/aaron-rusli.html`
-      sleep(1)
+      # `open views/users/aaron-rusli.html`
+      # sleep(1)
       expect("yes").to eq("yes")
     end  
       
