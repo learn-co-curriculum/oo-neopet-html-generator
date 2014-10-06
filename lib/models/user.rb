@@ -102,7 +102,24 @@ class User
   end
 
   def give_present(item_type, neopet_name)
-    
+    item = find_item_by_type(item_type)
+    pet = find_neopet_by_name(neopet_name)
+    if item && pet
+      increase_pet_happiness_by_five(pet)
+      pet.items << item
+      self.items.delete(item)
+      "You have given a #{item.type} to #{pet.name}, who is now #{pet.mood}."
+    else
+      "Sorry, an error occurred. Please double check the item type and neopet name."
+    end
+  end
+
+  def increase_pet_happiness_by_five(pet)
+    if pet.happiness <= 5
+      pet.happiness += 10
+    else
+      pet.happiness = 10
+    end
   end
 
   def make_file_name_for_index_page

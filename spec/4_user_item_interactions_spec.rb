@@ -51,8 +51,22 @@ describe "User - Item Interactions" do
   end
 
   describe "#find_item_by_type" do
-    xit "does stuff" do
-      # code here
+    let(:new_item) { Item.new }
+    it "accepts one argument" do
+      mandy.buy_item
+      item_name = mandy.items[-1].type
+      expect { mandy.find_item_by_type(item_name) }.to_not raise_error
+    end
+
+    it "finds the item that has a type that matches" do
+      item_type = new_item.type
+      mandy.items << new_item
+      expect(mandy.find_item_by_type(item_type)).to eq(new_item)
+    end
+
+    it "returns nil if it can't find a item" do
+      mandy.items << new_item
+      expect(mandy.find_item_by_type("xisi45fwoersfs")).to eq(nil)
     end
   end
 

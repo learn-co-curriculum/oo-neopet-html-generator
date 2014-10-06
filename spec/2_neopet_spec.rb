@@ -97,8 +97,8 @@ describe "Neopet" do
   end
 
   describe "#items" do
-    let(:new_item) { Item.new }
-    let(:second_new_item) { Item.new }
+    let(:first_item) { Item.new }
+    let(:second_item) { Item.new }
     it "has a reader method" do
       expect { sophie.items }.to_not raise_error
     end
@@ -106,21 +106,21 @@ describe "Neopet" do
       expect(sophie.items).to eq([])
     end
     it "has a writer method" do
-      expect { sophie.items=([Item.new, Item.new]) }.to_not raise_error
+      expect { sophie.items=([first_item, second_item]) }.to_not raise_error
     end
     it "allows for the addition of items" do
       original_count = sophie.items.length
-      sophie.items << new_item
+      sophie.items << first_item
       expect(sophie.items.length).to eq(original_count + 1)
-      expect(sophie.items).to include(new_item)
+      expect(sophie.items).to include(first_item)
     end
     it "allows for the substraction of items" do
-      [new_item, second_new_item].each {|item| sophie.items << item }
+      [first_item, second_item].each {|item| sophie.items << item }
       original_count = sophie.items.length
       sophie.items.pop
       expect(sophie.items.length).to eq(original_count - 1)
-      expect(sophie.items).to include(new_item)
-      expect(sophie.items).to_not include(second_new_item)
+      expect(sophie.items).to include(first_item)
+      expect(sophie.items).to_not include(second_item)
     end
   end
 

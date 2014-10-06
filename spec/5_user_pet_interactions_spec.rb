@@ -52,7 +52,7 @@ describe "User - Neopet Interactions" do
   describe "#find_neopet_by_name" do
     it "accepts one argument" do
       mandy.buy_neopet
-      neopet_name = mandy.neopets[0].name
+      neopet_name = mandy.neopets[-1].name
       expect { mandy.find_neopet_by_name(neopet_name) }.to_not raise_error
     end
 
