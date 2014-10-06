@@ -8,16 +8,16 @@ resources: 4
 
 ## Contents
 
-![cat reading](public/img/readme-images/cat-reading.jpg)
+## Contents
 
-|Section                                |
-|---------------------------------------|
-|[Background](#background)              |
-|[Objectives](#objectives)              |
-|[Overview](#overview)                  |
-|[File Structure](#file-structure)      |
-|[Instructions](#instructions)          |
-|[Resources](#resources)                |
+|Picture                                |Section                                |
+|---------------------------------------|---------------------------------------|
+|![cat reading](public/img/readme-images/cat-reading.jpg)                                        |[Background](#background)              |
+|                                       |[Objectives](#objectives)              |
+|                                       |[Overview](#overview)                  |
+|                                       |[File Structure](#file-structure)      |
+|                                       |[Instructions](#instructions)          |
+|                                       |[Resources](#resources)                |
 
 ## Background
 
