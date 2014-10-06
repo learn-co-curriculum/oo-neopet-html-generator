@@ -8,7 +8,7 @@ resources: 4
 
 ## Contents
 
-![cat reading](public/img/readme-images)
+![cat reading](public/img/readme-images/cat-reading.jpg)
 
 |Section                                |
 |---------------------------------------|
