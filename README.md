@@ -82,9 +82,9 @@ This lab has the following structure:
         └── your user.rb file will create html files in this folder
 ```
 
-It will be helpful to be familiar with this structure as your Neopet class will select a random species for a new neopet using the file names in public/img/neopets. 
+It will be helpful to be familiar with this structure as your Neopet class will select a random species for a new neopet using the file names in the folder `public/img/neopets/`. 
 
-Along the same lines, your Item class will select a random type from the file names in public/img/items.
+Along the same lines, your Item class will select a random type from the file names in the `public/img/items` folder.
 
 Furthermore, your User class will have a method, `make_index_page`, that will generate an HTML file and save it to the `views/users/` folder.
 
