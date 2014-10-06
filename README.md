@@ -14,7 +14,7 @@ resources: 3
 |[Overview](#overview)                  |
 |[File Structure](#file-structure)      |
 |[Resources](#resources)                |
-|[Example HTML File](example-html-file) |
+|[Example HTML File](#example-html-file)|
 
 ## Objectives
 
@@ -24,14 +24,14 @@ You're going to be making a rudimentary version of [Neopets](http://www.neopets.
 
 #### Models
 
-In Neopets, there are users, items, and neopets:
+On [neopets.com](http://www.neopets.com/), there are users, items, and neopets:
 * Items are the simplest and just have a type.
 * Users have have a name, neopoints (which are treated like currency), neopets, and items.
 * Neopets also can have items, like users. They also have a name, a species, strength, defence, movement, and moods.
 
 #### Methods
 
-Some basic things that users can do on neopets is buy more pets, buy more items, sell pets, feed pets, and give items to pets (kinda like giving them presents).
+Some basic things that users can do on [neopets.com](http://www.neopets.com/) is buy more pets, buy more items, sell pets, feed pets, and give items to pets (kinda like giving them presents).
 
 #### HTML Generator
 
@@ -78,7 +78,7 @@ Furthermore, your User class will have a method, `make_index_page`, that will ge
 
 ## Example HTML File
 
-For a hint about what the generated HTML could look like, see the file `example.html` in the `views/readme_example` folder.
+For a hint about what the generated HTML could look like, see the file [example.html](/views/readme_example/example.html) in the `views/readme_example` folder.
 
 ## Resources
 * [Stack Overflow](http://stackoverflow.com/) - [Get names of all files from a folder with Ruby](http://stackoverflow.com/a/1755713)
