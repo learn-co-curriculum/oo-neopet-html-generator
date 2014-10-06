@@ -145,10 +145,10 @@ class User
       html << "<li><img src=\"..\/..\/public/img/neopets/#{pet.species}.jpg\"></li>\n<ul>\n"
       methods = [:name, :mood, :species, :strength, :defence, :movement]
       methods.each do |method|
-        html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>"
+        html << "<li><strong>#{method.to_s.capitalize}:<\/strong> #{pet.send(method)}<\/li>\n"
       end
-      html << "<li><strong>Items:<strong></li><ul>"
-      pet.items.each { |i| html << "<li>#{i.formatted_type}</li>" }
+      html << "<li><strong>Items:</strong></li><ul>\n"
+      pet.items.each { |i| html << "<li><img src=\"..\/..\/public/img/items/#{i.type}.jpg\"></li>\n<ul><li><strong>Type:</strong> #{i.formatted_type}</li></ul>\n" }
       html << "</ul></ul>"
     end
     html << "</ul>\n</ul>\n</div>\n"

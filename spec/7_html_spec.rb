@@ -2,22 +2,22 @@ describe "User - HTML Generator" do
   describe "#make_index_page" do
 
     before(:all) do
-      aaron = User.new("Aaron Rusli") 
+      @aaron = User.new("Aaron Rusli") 
 
       # buy items and neopets
       2.times do 
-        aaron.buy_neopet
-        2.times do
-          aaron.buy_item
-        end
+        @aaron.buy_neopet
+        @aaron.buy_item
       end
 
+      @aaron.buy_item
+
       # assign instance variables to the purchased pets, items
-      @first_item = aaron.items[0]
-      @second_item = aaron.items[1]
-      @third_item = aaron.items[3]
-      @vivi = aaron.neopets[0]
-      @daisy = aaron.neopets[1]
+      @first_item = @aaron.items[0]
+      @second_item = @aaron.items[1]
+      @third_item = @aaron.items[2]
+      @vivi = @aaron.neopets[0]
+      @daisy = @aaron.neopets[1]
 
       # give items to neopets
       2.times do
@@ -26,7 +26,7 @@ describe "User - HTML Generator" do
       @daisy.items << Item.new
       
       # make index page
-      aaron.make_index_page
+      @aaron.make_index_page
     end
 
     it "is called on with no arguments" do
@@ -44,7 +44,7 @@ describe "User - HTML Generator" do
       file_path = "views/users/aaron-rusli.html"
       html_file = File.read(file_path)
       expect(html_file).to match /<h1>Aaron Rusli<\/h1>/
-      expect(html_file).to match /<h3><strong>Neopoints:<\/strong> 1400<\/h3>/
+      expect(html_file).to match /<h3><strong>Neopoints:<\/strong> #{@aaron.neopoints}<\/h3>/
     end
 
     it "has a section for the user's neopets" do
