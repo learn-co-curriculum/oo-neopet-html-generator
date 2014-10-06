@@ -1,5 +1,5 @@
 ---
-tags: oo, static html generator, hierarchical class interactions
+tags: oo, static html generator, hierarchical class interactions, passing around objects
 languages: ruby, html
 resources: 4
 ---
