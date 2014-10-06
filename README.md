@@ -96,6 +96,8 @@ For a hint about what the generated HTML could look like, see the file [example.
 
 This is a test-driven lab and tests are written in order of increasing difficulty. Therefore, we suggest that you tackle them in order.
 
+If you get stuck, be sure to the resources curated for you below.
+
 ## Resources
 * [Stack Overflow](http://stackoverflow.com/) - [Get names of all files from a folder with Ruby](http://stackoverflow.com/a/1755713)
 * [Stack Overflow](http://stackoverflow.com/) - [Writing to a file in Ruby](http://stackoverflow.com/a/7915881)
