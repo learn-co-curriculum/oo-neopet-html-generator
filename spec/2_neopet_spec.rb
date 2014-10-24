@@ -149,7 +149,7 @@ describe "Neopet" do
         expect(sophie.mood).to eq("happy")
       end
     end
-    it "returns 'ecstatic' if happiness is between 7 and 8" do
+    it "returns 'ecstatic' if happiness is between 9 and 10" do
       [9,10].each do |num|
         sophie.happiness = num
         expect(sophie.mood).to eq("ecstatic")
