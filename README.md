@@ -12,12 +12,12 @@ resources: 4
 
 |Picture                                |Section                                |
 |---------------------------------------|---------------------------------------|
-|![cat reading](public/img/readme-images/cat-reading.jpg)                                        |[Background](#background)              |
+|                                       |[Background](#background)              |
 |                                       |[Objectives](#objectives)              |
-|![acura writing](public/img/readme-images/acura-writing.png)                                        |[Overview](#overview)                  |
+|                                       |[Overview](#overview)                  |
 |                                       |[File Structure](#file-structure)      |
 |                                       |[Instructions](#instructions)          |
-|![fog reading](public/img/readme-images/frog-reading.jpg)                                        |[Resources](#resources)                |
+|                                       |[Resources](#resources)                |
 
 ## Background
 
