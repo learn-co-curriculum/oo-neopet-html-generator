@@ -50,7 +50,7 @@ They can also read to their pets, submit items for auction, etc. but we'll just 
 
 Once all these methods are built out, you'll make a method in the user class that will generate an HTML file to display the user's "account" (an HTML dashboard, so to speak). For instance, that HTML file could look like this:
 
-![example html file](/public/img/readme-images/example-html-page.png)
+![example html file](https://s3-us-west-2.amazonaws.com/readme-photos/oo-neopets-index.png)
 
 To see the basic HTML structure that went into creating the above 'profile', take a look at [example.html](/views/readme_example/example.html) in the `views/readme_example` folder.
 
