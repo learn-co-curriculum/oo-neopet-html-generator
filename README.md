@@ -10,14 +10,14 @@ resources: 4
 
 ## Contents
 
-|Picture                                |Section                                |
-|---------------------------------------|---------------------------------------|
-|                                       |[Background](#background)              |
-|                                       |[Objectives](#objectives)              |
-|                                       |[Overview](#overview)                  |
-|                                       |[File Structure](#file-structure)      |
-|                                       |[Instructions](#instructions)          |
-|                                       |[Resources](#resources)                |
+|Section                                |
+|---------------------------------------|
+|[Background](#background)              |
+|[Objectives](#objectives)              |
+|[Overview](#overview)                  |
+|[File Structure](#file-structure)      |
+|[Instructions](#instructions)          |
+|[Resources](#resources)                |
 
 ## Background
 
