@@ -8,7 +8,6 @@ resources: 4
 
 ## Contents
 
-## Contents
 
 |Section                                |
 |---------------------------------------|
