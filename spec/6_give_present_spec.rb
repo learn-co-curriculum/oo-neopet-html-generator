@@ -40,6 +40,9 @@ describe "User - Give Present" do
     expect(@mandy.give_present(@first_present.type, @daisy.name)).to eq(
       "You have given a #{@first_present.type} to #{@daisy.name}, who is now #{@daisy.mood}."
     )
+    expect(@mandy.give_present(@second_present.type, @rusty.name)).to eq(
+      "You have given a #{@second_present.type} to #{@rusty.name}, who is now #{@rusty.mood}."
+    )
   end
 
   it "returns a failure message if item is not found" do

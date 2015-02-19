@@ -112,15 +112,21 @@ describe "User - Neopet Interactions" do
     before(:each) do
       @gabriela = User.new("Gabriela Quintero")
       @shiloh = Neopet.new("Shiloh")
+      @bruce =  Neopet.new("Bruce")
       @shiloh.happiness = 8
       @gabriela.neopets << @shiloh
+      @gabriela.neopets << @bruce
     end
     it "accepts one argument, the pet's name" do
       expect { @gabriela.feed_neopet_by_name("Shiloh") }.to_not raise_error
     end
     it "increases the pet's happiness by 2 points if it's current happiness is less than 9" do
+      @shiloh.happiness = 8
       @gabriela.feed_neopet_by_name("Shiloh")
       expect(@shiloh.happiness).to eq(10)
+      @bruce.happiness = 3
+      @gabriela.feed_neopet_by_name("Bruce")
+      expect(@shiloh.happiness).to eq(5)
     end
     it "increases the pet's happiness by 1 point if it's current happiness is 9" do
       @shiloh.happiness = 9
@@ -135,10 +141,14 @@ describe "User - Neopet Interactions" do
     it "returns a message about the fed pet's mood" do
       @shiloh.happiness = 6
       expect(@gabriela.feed_neopet_by_name("Shiloh")).to eq("After feeding, Shiloh is happy.")
+      @bruce.happiness = 6
+      expect(@gabriela.feed_neopet_by_name("Bruce")).to eq("After feeding, Bruce is happy.")
     end
     it "returns a message if the pet cannot be fed because it's already at 10 happiness" do
       @shiloh.happiness = 10
       expect(@gabriela.feed_neopet_by_name("Shiloh")).to eq("Sorry, feeding was unsuccessful as Shiloh is already ecstatic.")
+      @bruce.happiness = 10
+      expect(@gabriela.feed_neopet_by_name("Bruce")).to eq("Sorry, feeding was unsuccessful as Bruce is already ecstatic.")      
     end
   end
 
