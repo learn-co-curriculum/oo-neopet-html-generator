@@ -126,7 +126,7 @@ describe "User - Neopet Interactions" do
       expect(@shiloh.happiness).to eq(10)
       @bruce.happiness = 3
       @gabriela.feed_neopet_by_name("Bruce")
-      expect(@shiloh.happiness).to eq(5)
+      expect(@bruce.happiness).to eq(5)
     end
     it "increases the pet's happiness by 1 point if it's current happiness is 9" do
       @shiloh.happiness = 9
@@ -152,4 +152,4 @@ describe "User - Neopet Interactions" do
     end
   end
 
-end
+endd
