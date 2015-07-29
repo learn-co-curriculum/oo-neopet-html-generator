@@ -1,8 +1,4 @@
----
-tags: oo, static html generator, hierarchical class interactions, passing around objects, bonus
-languages: ruby, html
-resources: 4
----
+
 
 # OO-Neopets
 
