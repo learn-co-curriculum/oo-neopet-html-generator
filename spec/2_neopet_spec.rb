@@ -15,7 +15,7 @@ describe "Neopet" do
     end
   end
 
-  describe "#intialize" do
+  describe "#initialize" do
     before(:all) do
       @neopet_contents = File.read("lib/models/neopet.rb")
     end

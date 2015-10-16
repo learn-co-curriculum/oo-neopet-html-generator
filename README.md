@@ -33,7 +33,7 @@ You're going to be making a rudimentary version of [Neopets](http://www.neopets.
 On [neopets.com](http://www.neopets.com/), there are users, items, and neopets:
 * Items are of the simplest class and just have a type.
 * Users have have a name, neopoints (the Neopia version of currency), neopets, and items.
-* Like users, neopets also can have items. In addition, they have a name, a species, strength, defence, movement, and a mood.
+* Like users, neopets also can have items. In addition, they have a name and a species. They also have strength, defence, movement, and a mood, which should initialize with a value between 1 and 10. 
 
 #### Methods
 
