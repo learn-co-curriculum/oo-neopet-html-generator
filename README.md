@@ -101,3 +101,4 @@ If you get stuck, be sure to refer to the curated resources below. If still stuc
 * [Ruby Monk](http://rubymonk.com/)- [Using the File Class](http://rubymonk.com/learning/books/1-ruby-primer/chapters/42-introduction-to-i-o/lessons/90-using-the-file-class)
 * [DaniWeb - Ruby](https://www.daniweb.com/web-development/ruby/) - [Create Html Files Using Ruby](https://www.daniweb.com/web-development/ruby/threads/236062/create-html-files-using-ruby)
 * [Rasmus Roon Nielsen's Blog](http://www.rrn.dk/) - [Ruby's ERB Templating System](http://www.rrn.dk/rubys-erb-templating-system)
+* [stuartellis.eu](http://www.stuartellis.eu/) - [An Introduction to ERB Templating](http://www.stuartellis.eu/articles/erb/)
