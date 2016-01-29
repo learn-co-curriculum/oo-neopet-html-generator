@@ -103,4 +103,4 @@ If you get stuck, be sure to refer to the curated resources below. If still stuc
 * [stuartellis.eu](http://www.stuartellis.eu/) - [An Introduction to ERB Templating](http://www.stuartellis.eu/articles/erb/) 
 * [Rasmus Roon Nielsen's Blog](http://www.rrn.dk/) - [Ruby's ERB Templating System](http://www.rrn.dk/rubys-erb-templating-system)
 
-<a href='https://learn.co/lessons/oo-neopet-html-generator' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/oo-neopet-html-generator' title='OO-Neopets'>OO-Neopets</a> on Learn.co and start learning to code for free.</p>
